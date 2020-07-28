@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';s
+import './style/common.scss'
+import {routeConfig} from './router/router'
+import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router } from "react-router-dom";
+import { renderRoutes } from 'react-router-config'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router basename={process.env.REACT_APP_BASE_URL}>
+    <Suspense fallback={<div></div>}>
+      {renderRoutes(routeConfig)}
+    </Suspense>
+  </Router>,
   document.getElementById('root')
 );
 

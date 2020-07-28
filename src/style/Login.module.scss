@@ -1,0 +1,35 @@
+.cont{
+    background: skyblue;
+    height: 100vh;
+    :global{
+        .main{
+            background: #fff;
+            border-radius: 10px;
+            box-sizing: border-box;
+            padding:60px 40px 50px;
+            box-shadow: 0 0 3px 6px rgba(0,0,0,0.2);
+            .log{
+                text-align: center;
+                font-size: 28px;
+            }
+            .inp{
+                margin-bottom:15px;
+                width: 400px;
+            }
+            .codes{
+                width: 400px;
+                display: flex;
+                input{
+                    flex:1;
+                }
+                img{
+                    width: 120px;
+                    height: 40px;
+                }
+            }
+            .jump{
+                padding:15px 0;
+            }
+        }
+    }
+}
