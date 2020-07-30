@@ -3,7 +3,6 @@ const {
     disableEsLint,
     fixBabelImports
 } = require("customize-cra");
-const path = require("path");
 module.exports = {
     webpack: override(
         disableEsLint(),

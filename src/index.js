@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React, {Suspense,Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import './style/common.scss'
@@ -6,7 +6,8 @@ import {routeConfig} from './router/router'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from "react-router-dom";
 import { renderRoutes } from 'react-router-config'
-
+import api from './api/index'
+Component.prototype.$api=api;
 ReactDOM.render(
   <Router basename={process.env.REACT_APP_BASE_URL}>
     <Suspense fallback={<div></div>}>

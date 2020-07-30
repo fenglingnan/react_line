@@ -17,8 +17,15 @@ class Login extends Component {
     check_change(e){
         console.log(e.target.checked)
     }
-    submit(){
-        console.log(22)
+    async submit(){
+        let res=await this.$api.test.TEST({
+            info:"今天我最吊",
+            userid:12344
+        });
+        console.log(res)
+    }
+    componentDidMount(){
+        
     }
     render() {
         return (
