@@ -3,6 +3,7 @@ import styles from '../../style/Login.module.scss';
 import { Input,Checkbox,Button  } from 'antd';
 import { UserOutlined,LockOutlined,LoginOutlined  } from '@ant-design/icons';
 import {ICON_CODE} from '../../common/ICON_FONT'
+import md5 from 'md5'
 class Login extends Component {
     constructor(props){
         super(props)
@@ -33,16 +34,16 @@ class Login extends Component {
                 <div className='main'>
                     <p className='log'>登录</p>
                     <div className='inp'>
-                        <Input size="large" placeholder="请输入用户名密码" prefix={<UserOutlined />} />
+                        <Input size="large" placeholder="请输入用户名" prefix={<UserOutlined />} />
                     </div>
                     <div className='inp'>
-                        <Input type='password' size="large" placeholder="请输入用户名密码" prefix={<LockOutlined />} />
+                        <Input type='password' size="large" placeholder="请输入密码" prefix={<LockOutlined />} />
                     </div>
                     <div>
-                    <Input.Group className='codes' size='large' compact>
-                        <Input placeholder='请输入验证码' prefix={<ICON_CODE type="iconyanzhengma" />} />
-                        <img src={this.state.code} alt=""/>
-                    </Input.Group>
+                        <Input.Group className='codes' size='large' compact>
+                            <Input placeholder='请输入验证码' prefix={<ICON_CODE type="iconyanzhengma" />} />
+                            <img src={this.state.code} alt=""/>
+                        </Input.Group>
                     </div>
                     <div className='flex_bt jump'>
                         <span>

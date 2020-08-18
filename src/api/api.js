@@ -23,12 +23,13 @@ instance.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-export function get(url,data={}){
+export function get(url,data={},header={},cross){
     return new Promise((resolve,reject)=>{
         instance({
             url:url,
             method:'get',
-            params:data
+            params:data,
+            headers:header
         }).then(res => {
             resolve(res);
         }).catch(err => {
@@ -37,7 +38,7 @@ export function get(url,data={}){
     })
 }
 
-export function post(url,data={},headers={'Content-Type':'application/json'}){
+export function post(url,data={},headers={'Content-Type':'application/json'},cross){
     return new Promise((resolve,reject) => {
         instance({
             url:url,
