@@ -1,0 +1,59 @@
+@mixin pos {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left:0;
+    top:0;
+}
+.cont{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    :global{
+        .user{
+            background: #A9A9A9;
+            @include pos;
+            z-index: 1;
+        }
+        .routes{
+            background:#00BFFF;
+            position: relative;
+            @include pos;
+            z-index: 2;
+            transition: all .35s;
+            .icons{
+                user-select: none;
+                position: absolute;
+                left:0;
+                top:0;
+                z-index: 3;
+                padding:15px;
+                span{
+                    outline: none;
+                }
+                svg{
+                    outline: none;
+                    border-color: transparent;
+                    font-size:45px;
+                    color:#fff;
+                    transition: all .5s cubic-bezier(.57,.13,.94,.63);
+                    opacity: 1;
+                }
+            }
+            .fly{
+                svg{
+                    transform: rotate(180deg);
+                    opacity: 0;
+                }
+            }
+            .content{
+                @include pos;
+                z-index: 2;
+            }
+        }
+        .open{
+            transform: translateX(260px) translateY(60px);
+        }
+    }
+}

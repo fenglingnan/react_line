@@ -23,6 +23,7 @@ class Login extends Component {
             info:"今天我最吊",
             userid:12344
         });
+        this.jump('/Home/Index')
         console.log(res)
     }
     componentDidMount(){
