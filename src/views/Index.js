@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import style from '../style/Index.module.scss'
 
 class Index extends Component {
     render() {
         return (
-            <div className='demo'>
-                这里是index
+            <div className={`${style.cont}`}>
+                <canvas id='running'></canvas>
             </div>
         );
     }
