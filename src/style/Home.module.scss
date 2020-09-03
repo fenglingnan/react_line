@@ -12,12 +12,12 @@
     overflow: hidden;
     :global{
         .user{
-            background: #A9A9A9;
+            background: #696969;
             @include pos;
             z-index: 1;
         }
         .routes{
-            background:#00BFFF;
+            background:#0e0e0e;
             position: relative;
             @include pos;
             z-index: 2;
@@ -36,7 +36,7 @@
                     outline: none;
                     border-color: transparent;
                     font-size:45px;
-                    color:#fff;
+                    color:#DCDCDC;
                     transition: all .5s cubic-bezier(.57,.13,.94,.63);
                     opacity: 1;
                 }

@@ -25,7 +25,7 @@ class Home extends Component {
                     这里是黄色
                 </div>
                 <div className={`${run} routes`}>
-                    <div className='icons'><ICON_CODE className={`${fly}`} onClick={this.air_fly.bind(this,true)} type='iconchilunshezhi' /></div>
+                    <div className='icons'><ICON_CODE className={`${fly}`} onClick={this.air_fly.bind(this,true)} type='iconchilun' /></div>
                     <div className='content'   onClick={this.air_fly.bind(this,false)}>
                         {renderRoutes(this.state.route)}
                     </div>
