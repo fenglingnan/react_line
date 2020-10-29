@@ -5,6 +5,8 @@ const Register = lazy (() => import('../views/user/Register'));
 const NF = lazy (() => import('../common/404'));
 const Home = lazy(()=>import('../views/Home'))
 const Index = lazy(()=>import('../views/Index'))
+const Clock = lazy(()=>import('../views/canvas/Clock'))
+const Tree = lazy(()=>import('../views/love/Tree'))
 export const routeConfig = [
     { 
         path: '/',
@@ -26,6 +28,14 @@ export const routeConfig = [
             {
                 path: '/Home/Index',
                 component: Index
+            },
+            {
+                path: '/Home/Clock',
+                component: Clock
+            },
+            {
+                path: '/Home/Tree',
+                component: Tree
             },
         ]
     },

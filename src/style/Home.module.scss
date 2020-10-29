@@ -12,9 +12,21 @@
     overflow: hidden;
     :global{
         .user{
-            background: #696969;
+            background:#2F4F4F;
             @include pos;
             z-index: 1;
+            .header{
+                line-height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .nav{
+                width: 260px;
+                height: calc(100% - 60px);
+                overflow-y: auto;
+                background:rgb(0,21,41);
+            }
         }
         .routes{
             background:#0e0e0e;
@@ -29,6 +41,7 @@
                 top:0;
                 z-index: 3;
                 padding:15px;
+                color:#DCDCDC;
                 span{
                     outline: none;
                 }
@@ -36,7 +49,7 @@
                     outline: none;
                     border-color: transparent;
                     font-size:45px;
-                    color:#DCDCDC;
+                    // color:#DCDCDC; 
                     transition: all .5s cubic-bezier(.57,.13,.94,.63);
                     opacity: 1;
                 }

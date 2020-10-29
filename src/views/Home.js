@@ -2,31 +2,110 @@ import React, { Component } from 'react';
 import styles from '../style/Home.module.scss';
 import { renderRoutes } from 'react-router-config'
 import {ICON_CODE} from '../common/ICON_FONT'
-
+import { Menu } from 'antd';
+const { SubMenu } = Menu;
 class Home extends Component {
     constructor(props){
         super(props)
     }
     state={
         open:false,
-        route:this.props.route.routes
+        route:this.props.route.routes,
+        menu:[
+            {
+                id:'0',
+                icon:"iconhome",
+                label:'首页',
+                href:'/Home/Index',
+                child:[],
+                icon_color:'#DCDCDC',
+                bg_color:'#000'
+            },
+            {
+                id:'1',
+                icon:"iconicon-",
+                label:'时钟',
+                href:'/Home/Clock',
+                child:[],
+                icon_color:'#000',
+                bg_color:'#fff'
+            },
+            {
+                id:'2',
+                icon:"iconaixin",
+                label:'表白',
+                href:'/Home/Tree',
+                child:[],
+                icon_color:'#000',
+                bg_color:'#fff'
+            }
+        ],
+        default_index:null
     }
     air_fly(status){
         this.setState({
             open:status
         })
     }
+    jump(item){
+        let route=document.querySelector('#route .content');
+        let svgs=document.querySelector('#route .svgs');
+        route.style.background=item.bg_color;
+        svgs.style.color=item.icon_color
+        this.props.history.push(item.href);
+    }
+    componentWillMount(){
+        for(let i in this.state.menu){
+            if(this.props.location.pathname==this.state.menu[i].href){
+                this.setState({
+                    default_index:i
+                })
+                break
+            }
+        }
+    }
     render() {
-        let run=this.state.open?'open':''
+        let run=this.state.open?'open':'';
         let fly=this.state.open?'fly':'';
+        let menu=this.state.menu.map(item=>{
+            if(item.child.length<=0){
+                return  <Menu.Item key={item.id} onClick={this.jump.bind(this,item)} icon={<ICON_CODE type={item.icon} />}>
+                            {item.label}
+                        </Menu.Item>
+            }
+            //有子节点的时候添加下方代码
+            let arr=item.child.map(list=>{
+                <Menu.Item icon={<ICON_CODE type={list.icon} />} key={list.id}>{list.label}</Menu.Item>
+            })
+
+            return  <SubMenu key={item.id} icon={<ICON_CODE type={item.icon} />} title={item.label}>
+                        {arr}
+                    </SubMenu>
+        })
         return (
             <div className={`${styles.cont}`}>
                 <div className='user'>
-                    这里是黄色
+                    <div className='header'>
+                        <div className='left'>
+                            123
+                        </div>
+                        <div className='right'>
+                            456
+                        </div>
+                    </div>
+                    <div className='nav'>
+                        <Menu
+                            defaultSelectedKeys={[this.state.menu[this.state.default_index].id]}
+                            mode="inline"
+                            theme="dark"
+                            >
+                            {menu}
+                        </Menu>
+                    </div>
                 </div>
-                <div className={`${run} routes`}>
-                    <div className='icons'><ICON_CODE className={`${fly}`} onClick={this.air_fly.bind(this,true)} type='iconchilun' /></div>
-                    <div className='content'   onClick={this.air_fly.bind(this,false)}>
+                <div id='route' className={`${run} routes`}>
+                    <div className='icons'><ICON_CODE  className={`svgs ${fly}`} style={{color:this.state.menu[this.state.default_index].icon_color}} onClick={this.air_fly.bind(this,true)} type='iconchilun' /></div>
+                    <div className='content'  style={{backgroundColor:this.state.menu[this.state.default_index].bg_color}}  onClick={this.air_fly.bind(this,false)}>
                         {renderRoutes(this.state.route)}
                     </div>
                 </div>

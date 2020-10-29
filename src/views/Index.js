@@ -194,7 +194,7 @@ class Index extends Component {
         this.ctx.lineTo(this.m_x,this.m_y);            
         this.ctx.closePath();
         this.ctx.stroke();
-        if(this.m_y<=this.line_three+1){
+        if(this.m_y<=this.line_three){
             requestAnimationFrame(this.ctx_m_right)
         }
     }
