@@ -12,4 +12,15 @@ module.exports=function(app){
             }
         })
     )
+    app.use(
+        //本地环境测试
+        '/local',
+        proxy.createProxyMiddleware({
+            target:'http://127.0.0.1:8000',
+            changeOrigin:true,
+            pathRewrite:{
+                '^/local':''
+            }
+        })
+    )
 }

@@ -10,7 +10,10 @@ class Login extends Component {
     }
     state={
         code:'https://www.threetong.com/uploads/allimg/160910/9-160910101Z2952.jpg',
-        prp:1234
+        prp:1234,
+        username:'',
+        password:'',
+        img:''
     }
     jump(url){
         this.props.history.push(url);
@@ -19,31 +22,57 @@ class Login extends Component {
         console.log(e.target.checked)
     }
     async submit(){
-        let res=await this.$api.test.TEST({
-            info:"今天我最吊",
-            userid:12344
-        });
-        this.jump('/Home/Index')
-        console.log(res)
+        console.log(this.state.password)
+        let res=await this.$api.login.LOGIN({
+            username:this.state.username,
+            password:this.state.password,
+            code:this.state.img
+        })
+        
+    }
+    async get_code(){
+        let res=await this.$api.login.CAPTCHA();
+        this.setState({
+            code:res.data.image
+        })
     }
     componentDidMount(){
-        
+        console.log(this.$common)
+        this.get_code()
     }
     render() {
         return (
             <div className={`${styles.cont} flex_center`}>
                 <div className='main'>
-                    <p className='log'>登录</p>
+                    <p className='log'>登录{this.$common.a}</p>
                     <div className='inp'>
-                        <Input size="large" placeholder="请输入用户名" prefix={<UserOutlined />} />
+                        <Input 
+                            size="large" 
+                            placeholder="请输入用户名" 
+                            prefix={<UserOutlined />} 
+                            value={this.state.username} 
+                            onChange={this.$common.set_inp.bind(this,'username',this)} 
+                        />
                     </div>
                     <div className='inp'>
-                        <Input type='password' size="large" placeholder="请输入密码" prefix={<LockOutlined />} />
+                        <Input 
+                            type='password' 
+                            size="large" 
+                            placeholder="请输入密码" 
+                            prefix={<LockOutlined />} 
+                            value={this.state.password} 
+                            onChange={this.$common.set_inp.bind(this,'password',this)} 
+                        />
                     </div>
                     <div>
                         <Input.Group className='codes' size='large' compact>
-                            <Input placeholder='请输入验证码' prefix={<ICON_CODE type="iconyanzhengma" />} />
-                            <img src={this.state.code} alt=""/>
+                            <Input 
+                                placeholder='请输入验证码' 
+                                prefix={<ICON_CODE type="iconyanzhengma" />} 
+                                value={this.state.img}  
+                                onChange={this.$common.set_inp.bind(this,'img',this)} 
+                            />
+                            <img src={this.state.code} alt="" onClick={this.get_code.bind(this)} />
                         </Input.Group>
                     </div>
                     <div className='flex_bt jump'>
@@ -63,3 +92,4 @@ class Login extends Component {
 }
 
 export default Login;
+

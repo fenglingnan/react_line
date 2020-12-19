@@ -105,7 +105,7 @@ class Clock extends Component {
         ctx.textBaseline='middle'
         ctx.direction='ltr'
         ctx.fillText("CLOCK", 0, -260);
-        ctx.fillStyle='#ffffff';
+        ctx.fillStyle='#000';
         ctx.font = "34px serif";
         ctx.fillText("III", 180, 0);
         ctx.fillText("VI", 0, 180);

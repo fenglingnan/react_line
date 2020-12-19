@@ -13,6 +13,9 @@ class tree extends Component {
         this.foot=null;
         this.hold=null;
     }
+    state={
+        run:true
+    }
     init(){
         this.canvas=document.querySelector('#canvas')
         this.ctx=this.canvas.getContext('2d');
@@ -55,7 +58,11 @@ class tree extends Component {
         this.seed = this.tree.seed;
         this.foot = this.tree.footer;
         this.hold = 1;
-        this.runAsync();
+        this.runAsync().then(res=>{
+            console.log(res)
+        }).catch(err=>{
+            console.log(err)
+        });
     }
     runAsync = async ()=> {
         await this.seedAnimate();
@@ -142,10 +149,11 @@ class tree extends Component {
         together.setMilliseconds(2);				//秒第二位
         this.typewriter()
         document.querySelector('#clock-box').style.display='block';
-        while (true) {
+        while (this.state.run) {
             this.timeElapse(together);
             await this.sleep(1000)
-        }
+        } 
+        
     }
     timeElapse=(date)=>{
         var current = Date();
@@ -201,7 +209,13 @@ class tree extends Component {
     }
     componentDidMount() {
         this.init()
-        // console.log(this.props)
+    }
+    componentWillUnmount(){
+        this.setState({
+            run:false
+        })
+        // this.timeElapse=null;
+        // this.textAnimate=null;
     }
     render() {
         return (
