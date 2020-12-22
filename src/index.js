@@ -4,7 +4,7 @@ import './index.css';
 import './style/common.scss'
 import {routeConfig} from './router/router'
 import * as serviceWorker from './serviceWorker';
-import { HashRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { renderRoutes } from 'react-router-config'
 import api from './api/index'
 import $common from './util/common'
