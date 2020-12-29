@@ -33,6 +33,9 @@ instance.interceptors.response.use(function (response) {
 			// router.push({name:'login'})
 			return
 		}
+		if(response.data.code=='500'){
+			return response
+		}
 		message.error(response.data.msg)
 		return
 	}
@@ -93,7 +96,7 @@ function refresh(){
 }
 //all表示传递所有的response，默认传递返回的data
 //err_back表示是否需要错误的回调，默认不回调
-export function get(url, params = {},all=false,err_back=false,config={}) {
+export function get(url, params = {},config={},all=false,err_back=false) {
 	return new Promise((resolve, reject) => {
 		instance({
 			...{
@@ -117,7 +120,7 @@ export function get(url, params = {},all=false,err_back=false,config={}) {
 	})
 }
 
-export function post(url, params = {},all=false,err_back=false, headers = { 'Content-Type': 'application/json' },config={}) {
+export function post(url, params = {},config={},all=false,err_back=false, headers = { 'Content-Type': 'application/json' }) {
 	return new Promise((resolve, reject) => {
 		instance({
 			...{

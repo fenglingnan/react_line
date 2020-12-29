@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import styles from '../style/Home.module.scss';
 import { renderRoutes } from 'react-router-config'
 import {ICON_CODE} from '../common/ICON_FONT'
-import { Menu } from 'antd';
+import { Menum,Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 const { SubMenu } = Menu;
 class Home extends Component {
     constructor(props){
@@ -82,6 +83,18 @@ class Home extends Component {
                         {arr}
                     </SubMenu>
         })
+        let slide=(
+            <Menu>
+                <Menu.Item key="0">
+                <a href="http://www.alipay.com/">1st menu item</a>
+                </Menu.Item>
+                <Menu.Item key="1">
+                <a href="http://www.taobao.com/">2nd menu item</a>
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key="3">退出登录</Menu.Item>
+            </Menu>
+        )
         return (
             <div className={`${styles.cont}`}>
                 <div className='user'>
@@ -90,7 +103,11 @@ class Home extends Component {
                             123
                         </div>
                         <div className='right'>
-                            456
+                        <Dropdown overlay={slide} trigger={['click']}>
+                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                            Click me <DownOutlined />
+                            </a>
+                        </Dropdown>
                         </div>
                     </div>
                     <div className='nav'>

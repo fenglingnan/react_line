@@ -8,11 +8,12 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { renderRoutes } from 'react-router-config'
 import api from './api/index'
 import $common from './util/common'
+import Loading from './common/Loading'
 Component.prototype.$api=api;
 Component.prototype.$common=$common;
 ReactDOM.render(
 	<Router basename={process.env.REACT_APP_BASE_URL}>
-		<Suspense fallback={<div></div>}>
+		<Suspense fallback={<Loading></Loading>} maxDuration={500}>
 		{renderRoutes(routeConfig)}
 		</Suspense>
 	</Router>,

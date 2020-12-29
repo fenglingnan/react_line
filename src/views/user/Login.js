@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from '../../style/Login.module.scss'; 
-import { Input,Checkbox,Button  } from 'antd';
+import { Input,Checkbox,Button,message  } from 'antd';
 import { UserOutlined,LockOutlined,LoginOutlined  } from '@ant-design/icons';
 import {ICON_CODE} from '../../common/ICON_FONT'
 import md5 from 'md5'
@@ -28,6 +28,14 @@ class Login extends Component {
             password:this.state.password,
             code:this.state.img
         })
+        if(res.data.code==200){
+            message.success(res.data.msg)
+            this.jump('/Home/Index')
+        }else{
+            message.error(res.data.msg)
+            this.get_code()
+        }
+        console.log(res)
         
     }
     async get_code(){
