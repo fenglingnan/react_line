@@ -4,6 +4,7 @@ import { createFromIconfontCN  } from '@ant-design/icons';
 
 export const ICON_CODE=createFromIconfontCN({
     scriptUrl: [
-        process.env.REACT_APP_ICON_URL
+        // process.env.REACT_APP_ICON_URL
+        '//at.alicdn.com/t/font_1247967_0my58acyzmbe.js'
     ],
 });

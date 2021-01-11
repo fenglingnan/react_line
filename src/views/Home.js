@@ -39,6 +39,15 @@ class Home extends Component {
                 child:[],
                 icon_color:'#000',
                 bg_color:'#fff'
+            },
+            {
+                id:'3',
+                icon:"iconliuyanban-05",
+                label:'日记',
+                href:'/Home/Diary',
+                child:[],
+                icon_color:'#FFFAFA',
+                bg_color:'skyblue'
             }
         ],
         default_index:null
@@ -47,6 +56,13 @@ class Home extends Component {
         this.setState({
             open:status
         })
+    }
+    jump_info(){
+        console.log(this.props)
+        this.props.history.push({
+            pathname:'/Info',
+            state:{url:this.props.location.pathname}
+        });
     }
     jump(item){
         let route=document.querySelector('#route .content');
@@ -85,11 +101,11 @@ class Home extends Component {
         })
         let slide=(
             <Menu>
-                <Menu.Item key="0">
-                <a href="http://www.alipay.com/">1st menu item</a>
+                <Menu.Item key="0" onClick={this.jump_info.bind(this)}>
+                    个人中心
                 </Menu.Item>
                 <Menu.Item key="1">
-                <a href="http://www.taobao.com/">2nd menu item</a>
+                    <a href="http://www.taobao.com/">2nd menu item</a>
                 </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="3">退出登录</Menu.Item>

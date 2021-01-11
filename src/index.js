@@ -9,8 +9,10 @@ import { renderRoutes } from 'react-router-config'
 import api from './api/index'
 import $common from './util/common'
 import Loading from './common/Loading'
+import {message} from 'antd'
 Component.prototype.$api=api;
 Component.prototype.$common=$common;
+Component.prototype.$msg=message
 ReactDOM.render(
 	<Router basename={process.env.REACT_APP_BASE_URL}>
 		<Suspense fallback={<Loading></Loading>} maxDuration={500}>
