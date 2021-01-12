@@ -72,6 +72,7 @@ class Home extends Component {
         this.props.history.push(item.href);
     }
     componentWillMount(){
+        console.log(this.props.location.pathname)
         for(let i in this.state.menu){
             if(this.props.location.pathname==this.state.menu[i].href){
                 this.setState({
