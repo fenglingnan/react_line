@@ -58,7 +58,7 @@ class Home extends Component {
         })
     }
     jump_info(){
-        console.log(this.props)
+        // console.log(this.props)
         this.props.history.push({
             pathname:'/Info',
             state:{url:this.props.location.pathname}
@@ -72,7 +72,6 @@ class Home extends Component {
         this.props.history.push(item.href);
     }
     componentWillMount(){
-        console.log(this.props.location.pathname)
         for(let i in this.state.menu){
             if(this.props.location.pathname==this.state.menu[i].href){
                 this.setState({

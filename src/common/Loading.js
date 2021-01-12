@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { message } from 'antd';
-const hide = message.loading('Action in progress..', 0);
+const hide = message.loading('界面正在赶来..', 0);
 class Loading extends Component {
     componentDidMount(){
         
         // Dismiss manually and asynchronously
-        setTimeout(hide, 10);
+        setTimeout(hide, 100);
     }
     render() {
         return (
