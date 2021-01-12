@@ -50,7 +50,7 @@ class Home extends Component {
                 bg_color:'skyblue'
             }
         ],
-        default_index:null
+        default_index:1
     }
     air_fly(status){
         this.setState({
