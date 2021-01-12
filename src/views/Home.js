@@ -117,7 +117,7 @@ class Home extends Component {
                 <div className='user'>
                     <div className='header'>
                         <div className='left'>
-                            123
+                            123456
                         </div>
                         <div className='right'>
                         <Dropdown overlay={slide} trigger={['click']}>

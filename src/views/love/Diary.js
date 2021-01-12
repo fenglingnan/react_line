@@ -69,7 +69,9 @@ class Diary extends Component {
         this.editor.create()
     }
     destroy_editor(){
-        this.editor.destroy()
+        if(this.state.is_create){
+            this.editor.destroy()
+        }
     }
     componentWillUnmount(){
         this.destroy_editor()
