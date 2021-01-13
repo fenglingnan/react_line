@@ -71,6 +71,9 @@ class Home extends Component {
         svgs.style.color=item.icon_color
         this.props.history.push(item.href);
     }
+    logout=()=>{
+        this.props.history.push('/');
+    }
     componentWillMount(){
         for(let i in this.state.menu){
             if(this.props.location.pathname==this.state.menu[i].href){
@@ -108,7 +111,7 @@ class Home extends Component {
                     <a href="http://www.taobao.com/">2nd menu item</a>
                 </Menu.Item>
                 <Menu.Divider />
-                <Menu.Item key="3">退出登录</Menu.Item>
+                <Menu.Item key="3" onClick={this.logout}>退出登录</Menu.Item>
             </Menu>
         )
         return (

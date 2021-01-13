@@ -28,8 +28,10 @@ class Login extends Component {
             password:this.state.password,
             code:this.state.img
         })
+        console.log(res)
         if(res.data.code==200){
             message.success(res.data.msg)
+            localStorage.setItem('token',res.data.data.token)
             this.jump('/Home/Index')
         }else{
             message.error(res.data.msg)
