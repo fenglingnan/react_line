@@ -107,7 +107,7 @@ export function get(url, params = {},config={},all=false,err_back=false) {
 	return new Promise((resolve, reject) => {
 		instance({
 			...{
-				url: url,
+				url: `${process.env.REACT_APP_NET}${url}`,
 				method: 'get',
 				params: params
 			},...config

@@ -5,7 +5,7 @@ module.exports=function(app){
         // 图灵测试
         '/test',
         proxy.createProxyMiddleware({
-            target:'http://www.tuling123.com/',
+            target:'http://www.tuling123.com/api',
             changeOrigin:true,
             pathRewrite:{
                 '^/test':'/'
@@ -14,12 +14,12 @@ module.exports=function(app){
     )
     app.use(
         //本地环境测试
-        '/local',
+        '/api',
         proxy.createProxyMiddleware({
-            target:'http://127.0.0.1:8000',
+            target:'http://127.0.0.1:8000/api',
             changeOrigin:true,
             pathRewrite:{
-                '^/local':'/'
+                '^/api':'/'
             }
         })
     )
