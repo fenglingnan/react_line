@@ -8,7 +8,7 @@ module.exports=function(app){
             target:'http://www.tuling123.com/',
             changeOrigin:true,
             pathRewrite:{
-                '^/test':''
+                '^/test':'/'
             }
         })
     )
@@ -19,7 +19,7 @@ module.exports=function(app){
             target:'http://127.0.0.1:8000',
             changeOrigin:true,
             pathRewrite:{
-                '^/local':''
+                '^/local':'/'
             }
         })
     )
