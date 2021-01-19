@@ -4,11 +4,11 @@ console.log(process.env.NODE_ENV)
 //需要加forceRefresh刷新，否则视图不更新
 const browserHistory = require("history").createBrowserHistory({forceRefresh:true})
 const instance = axios.create({
-	timeout: 10000,
-	responseType:'json'
+	timeout: 10000
 });
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
+	config.headers.responseType='json'
 	// 在发送请求之前做些什么
 	if(config.url.includes('/code')||config.url.includes('/login')){
 		return config
