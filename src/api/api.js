@@ -133,7 +133,7 @@ export function post(url, params = {},config={},all=false,err_back=false, header
 	return new Promise((resolve, reject) => {
 		instance({
 			...{
-				url: url,
+				url: `${process.env.REACT_APP_NET}${url}`,
 				method: 'post',
 				data: params,
 				headers: headers
