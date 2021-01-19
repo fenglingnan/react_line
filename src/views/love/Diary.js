@@ -4,34 +4,24 @@ import style from '../../style/Diary.module.scss'
 import { Button,Pagination,ConfigProvider,Empty   } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
 import {ICON_CODE} from '../../common/ICON_FONT'
+console.log(Component,1)
 class Diary extends Component {
     constructor(props){
+        
         super(props)
         this.editor=null
     }
     state={
         is_create:false,
-        diary_list:[
-            // {
-            //     src:'https://www.threetong.com/uploads/allimg/160910/9-160910101Z2952.jpg',
-            //     user_name:'我是阿祥',
-            //     html:'<p>321</p>',
-            //     leave_time:new Date().getTime()
-            // },
-            // {
-            //     src:'https://www.threetong.com/uploads/allimg/160910/9-160910101Z2952.jpg',
-            //     user_name:'我是阿祥',
-            //     html:'<p>321</p>',
-            //     leave_time:new Date().getTime()
-            // }
-        ],
+        diary_list:[],
         page_total:0,
         page_cur:1,
         page_size:10
     }
     componentDidMount(){
+        this.get_list()
         // console.log(2)
-        
+        console.log(this,2)
     }
     open(){
         if(this.state.is_create){
@@ -76,10 +66,17 @@ class Diary extends Component {
     componentWillUnmount(){
         this.destroy_editor()
     }
-    get_list(){
-
+    async get_list(){
+        let res=await this.$api.diary.GET_DIARY({
+            page_cur:this.state.page_cur,
+            page_size:this.state.page_size
+        })
+        this.setState({
+            diary_list:res.data.list,
+            page_total:res.data.page_total
+        })
     }
-    save(){
+    save=async ()=>{
         if(!this.state.is_create){
             return this.$msg.error('请先点击编辑')
         }
@@ -87,12 +84,19 @@ class Diary extends Component {
         if(!txt){
             this.$msg.warning('请输入内容')
         }else{
+            let res=await this.$api.diary.ADD_DIARY({
+                txt:txt
+            })
+            this.$msg.success(res.msg)
+            this.get_list()
             console.log('提交内容')
         }
     }
     onChange=page=>{
         this.setState({
             page_cur: page,
+        },()=>{
+            this.get_list()
         });
     }
     render() {
@@ -104,7 +108,7 @@ class Diary extends Component {
         }else{
             cont=this.state.diary_list.map((item,index)=>{
                 return (
-                    <div className='list'>
+                    <div className='list' key={index}>
                         <div className='left'>
                             <img src={item.src} alt=""/>
                         </div>
@@ -114,8 +118,8 @@ class Diary extends Component {
                                 <span className='floor'>{`第${index+1}楼`}</span>
                             </div>
                             {/* 强制必须加{ __html:} */}
-                            <div className='edi' dangerouslySetInnerHTML={{ __html: item.html}}></div>
-                            <div className='timer'>{this.$common.timestamp(item.leave_time)}</div>
+                            <div className='edi' dangerouslySetInnerHTML={{ __html: item.body}}></div>
+                            <div className='timer'>{this.$common.timestamp(item.time)}</div>
                         </div>
                     </div>
                 )

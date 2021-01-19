@@ -1,13 +1,17 @@
 import axios from "axios";
 import { message } from 'antd';
-// console.log(process.env.REACT_APP_SERVER_URL)
-
+//需要加forceRefresh刷新，否则视图不更新
+const browserHistory = require("history").createBrowserHistory({forceRefresh:true})
 const instance = axios.create({
     timeout: 10000
 });
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
-    // 在发送请求之前做些什么
+	// 在发送请求之前做些什么
+	if(config.url.includes('/code')||config.url.includes('/login')){
+		return config
+	}
+	config.headers.token=localStorage.getItem('token')
     return config;
 }, function (error) {
     // 对请求错误做些什么
@@ -16,7 +20,8 @@ instance.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
-    // 对响应数据做点什么
+	// 对响应数据做点什么
+	
     if(response.status!=200){
 		return message.error(response.statusText)
 	}
@@ -28,6 +33,7 @@ instance.interceptors.response.use(function (response) {
 		//501token异常，返回登录页
 		if(response.data.code=='501'){
 			message.error(response.data.msg)
+			browserHistory.push(process.env.REACT_APP_BASE_URL)
 			// localStorage.removeItem('access_token')
 			// localStorage.removeItem('refresh_token')
 			// router.push({name:'login'})

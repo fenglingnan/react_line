@@ -11,7 +11,7 @@ const $common={
     //返回年月日时分秒
     timestamp:function(data){
         if(!data) return ''
-        let date=new Date(Number(data));
+        let date=new Date(data);
         let hours=date.getHours()
         let min=date.getMinutes()
         let sec=date.getSeconds()
