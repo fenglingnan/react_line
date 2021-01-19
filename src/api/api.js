@@ -105,6 +105,7 @@ function refresh(){
 //all表示传递所有的response，默认传递返回的data
 //err_back表示是否需要错误的回调，默认不回调
 export function get(url, params = {},config={},all=false,err_back=false) {
+	console.log(process.env.REACT_APP_NET)
 	return new Promise((resolve, reject) => {
 		instance({
 			...{
