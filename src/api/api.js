@@ -1,5 +1,6 @@
 import axios from "axios";
 import { message } from 'antd';
+console.log(process.env.NODE_ENV)
 //需要加forceRefresh刷新，否则视图不更新
 const browserHistory = require("history").createBrowserHistory({forceRefresh:true})
 const instance = axios.create({
