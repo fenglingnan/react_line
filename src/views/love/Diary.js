@@ -103,10 +103,12 @@ class Diary extends Component {
         let word=!this.state.is_create?'编辑':'关闭'
         let type=this.state.is_create?'iconguanbi':'iconbianji'
         let cont
+        
         if(this.state.diary_list.length==0){
             cont=(<Empty description='没有留言哟~'></Empty>)
         }else{
             cont=this.state.diary_list.map((item,index)=>{
+                let floor=(this.state.page_cur-1)*this.state.page_size+index+1
                 return (
                     <div className='list' key={index}>
                         <div className='left'>
@@ -115,7 +117,7 @@ class Diary extends Component {
                         <div className='right'>
                             <div className='tit'>
                                 <span className='name'>{item.user_name}</span>
-                                <span className='floor'>{`第${index+1}楼`}</span>
+                                <span className='floor'>{`第${floor}楼`}</span>
                             </div>
                             {/* 强制必须加{ __html:} */}
                             <div className='edi' dangerouslySetInnerHTML={{ __html: item.body}}></div>
