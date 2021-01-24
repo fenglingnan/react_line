@@ -146,14 +146,14 @@ class Register extends Component {
                             >
                                 <Input type='password' prefix={<LockOutlined />} placeholder='请输入密码' />
                             </Form.Item>
-                            <Form.Item {...tailLayout}>
+                            <div className='flex_center'>
                                 <Button type="primary" htmlType="submit" className='btn_left'>
                                     注册
                                 </Button>
                                 <Button htmlType="button" onClick={this.onReset}>
                                     重置
                                 </Button>
-                            </Form.Item>
+                            </div>
                         </Form>
                     </ConfigProvider>
                 </div>

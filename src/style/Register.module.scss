@@ -28,6 +28,10 @@
                 }
                 
             }
+            .buttons{
+                display: flex;
+                justify-content: center;
+            }
         }
         span.changes{
             cursor: pointer;
