@@ -12,12 +12,6 @@ const layout = {
       span: 18,
     },
 };
-const tailLayout = {
-    wrapperCol: {
-      offset: 4,
-      span: 20,
-    },
-};
 const PHONE_REG=/^1\d{10}$/
 class Register extends Component {
     constructor(props){
@@ -30,10 +24,16 @@ class Register extends Component {
         code:'https://www.threetong.com/uploads/allimg/160910/9-160910101Z2952.jpg',
         pic:'',
         word:'获取验证码',
-        dis:false
+        dis:false,
+        sms_code:''
     }
-    send_code=()=>{
+    get_sms_code=async ()=>{
+        let res=await this.$api.login.SMS_CODE()
+        this.setState({sms_code:res.data.image})
+    }
+    send_code=async ()=>{
         let val=this.formRef.current.getFieldValue('mobile')
+        let code=this.formRef.current.getFieldValue('sms')
         if(!PHONE_REG.test(val)){
             return message.error('手机号格式不正确')
         }
@@ -43,6 +43,17 @@ class Register extends Component {
         this.setState({
             dis:true
         })
+        let res=await this.$api.login.SEND_CODE({
+            mobile:val,
+            code:code
+        })
+        if(!res){
+            this.setState({
+                dis:false
+            })
+            return this.get_sms_code()
+        }
+        message.success(res.msg)
         this.timer=setInterval(()=>{
             this.setState({
                 word:`${this.time--}s`
@@ -66,9 +77,12 @@ class Register extends Component {
             user_name:val.user_name,
             mobile:val.mobile,
             code:val.code,
-            pwd:md5(val.pwd)
+            pwd:md5(val.pwd),
+            sms:val.sms
         })
-        console.log(res)
+        if(!res){
+            return this.get_sms_code()
+        }
         message.success(res.msg)
         this.props.history.push('/');
     }
@@ -77,6 +91,9 @@ class Register extends Component {
     }
     regist(){
         this.props.history.push('/');
+    }
+    componentWillMount(){
+        this.get_sms_code()
     }
     render(){
         const validateMessages = {
@@ -112,6 +129,19 @@ class Register extends Component {
                                 ]}
                             >
                                 <Input prefix={<MobileOutlined />} placeholder='请输入手机号' />
+                            </Form.Item>
+                            <Form.Item
+                                name="sms"
+                                label="短信验证码"
+                                rules={[
+                                    {
+                                        required: '短信验证码是必选字段'
+                                    },
+                                ]}
+                            >
+                                <Input 
+                                    placeholder='请输入短信验证码' 
+                                    prefix={<ICON_CODE type="iconyanzhengma" />} addonAfter={<img src={this.state.sms_code} onClick={this.get_sms_code} />} />
                             </Form.Item>
                             <Form.Item
                                 name='code'

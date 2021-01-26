@@ -47,7 +47,6 @@ instance.interceptors.response.use(function (response) {
 	if (response.data.code == '200') {
 		return response;
 	}
-    return response;
 }, function (error) {
     // console.log('err' + error)
     let err_msg = error.message;
