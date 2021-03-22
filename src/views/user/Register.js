@@ -22,7 +22,6 @@ class Register extends Component {
     }
     state={
         code:'https://www.threetong.com/uploads/allimg/160910/9-160910101Z2952.jpg',
-        pic:'',
         word:'获取验证码',
         dis:false,
         sms_code:''
@@ -89,11 +88,11 @@ class Register extends Component {
     onReset=()=>{
         this.formRef.current.resetFields()
     }
-    regist(){
-        this.props.history.push('/');
-    }
     componentWillMount(){
         this.get_sms_code()
+    }
+    componentWillUnmount(){
+        this.timer=null
     }
     render(){
         const validateMessages = {

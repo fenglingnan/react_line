@@ -48,6 +48,15 @@ class Home extends Component {
                 child:[],
                 icon_color:'#FFFAFA',
                 bg_color:'skyblue'
+            },
+            {
+                id:'4',
+                icon:"icontiankongsheding",
+                label:'Sky',
+                href:'/Home/Cross',
+                child:[],
+                icon_color:'#000',
+                bg_color:'#fff'
             }
         ],
         default_index:1

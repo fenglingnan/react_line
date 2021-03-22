@@ -5,6 +5,9 @@ class Loading extends Component {
     componentDidMount(){
         
         // Dismiss manually and asynchronously
+        
+    }
+    componentWillUnmount(){
         setTimeout(hide, 100);
     }
     render() {

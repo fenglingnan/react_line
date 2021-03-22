@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Version: 1.0.0
+ * @Author: ljx
+ * @Date: 2020-07-22 23:00:10
+ * @LastEditors: ljx
+ * @LastEditTime: 2021-03-22 23:35:52
+ */
 import { lazy } from 'react';
 const Login = lazy (() => import('../views/user/Login'));
 const Forget = lazy (() => import('../views/user/Forget'));
@@ -7,8 +15,10 @@ const NF = lazy (() => import('../common/404'));
 const Home = lazy(()=>import('../views/Home'))
 const Index = lazy(()=>import('../views/Index'))
 const Clock = lazy(()=>import('../views/canvas/Clock'))
+const Cross = lazy(()=>import('../views/canvas/Cross'))
 const Tree = lazy(()=>import('../views/love/Tree'))
 const Diary = lazy(()=>import('../views/love/Diary'))
+
 export const routeConfig = [
     { 
         path: '/',
@@ -43,7 +53,10 @@ export const routeConfig = [
                 path: '/Home/Diary',
                 component: Diary
             },
-            
+            {
+                path: '/Home/Cross',
+                component: Cross
+            },
         ]
     },
     {
