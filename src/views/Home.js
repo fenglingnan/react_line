@@ -57,6 +57,15 @@ class Home extends Component {
                 child:[],
                 icon_color:'#000',
                 bg_color:'#fff'
+            },
+            {
+                id:'5',
+                icon:"iconfalv",
+                label:'民法典',
+                href:'/Home/Legal',
+                child:[],
+                icon_color:'#48D1CC',
+                bg_color:'#fff'
             }
         ],
         default_index:1
