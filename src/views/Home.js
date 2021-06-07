@@ -66,6 +66,15 @@ class Home extends Component {
                 child:[],
                 icon_color:'#48D1CC',
                 bg_color:'#fff'
+            },
+            {
+                id:'6',
+                icon:"icongaoji",
+                label:'React Hooks',
+                href:'/Home/Hooks',
+                child:[],
+                icon_color:'#000',
+                bg_color:'#fff'
             }
         ],
         default_index:1

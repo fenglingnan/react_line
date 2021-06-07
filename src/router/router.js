@@ -4,7 +4,7 @@
  * @Author: ljx
  * @Date: 2020-07-22 23:00:10
  * @LastEditors: ljx
- * @LastEditTime: 2021-04-25 14:09:29
+ * @LastEditTime: 2021-05-07 23:53:34
  */
 import { lazy } from 'react';
 const Login = lazy (() => import('../views/user/Login'));
@@ -19,7 +19,7 @@ const Cross = lazy(()=>import('../views/canvas/Cross'))
 const Tree = lazy(()=>import('../views/love/Tree'))
 const Diary = lazy(()=>import('../views/love/Diary'))
 const Legal = lazy(()=>import('../views/business/Legal'))
-
+const Hooks = lazy(()=>import('../views/hooks/Hooks'))
 export const routeConfig = [
     { 
         path: '/',
@@ -61,6 +61,10 @@ export const routeConfig = [
             {
                 path: '/Home/Legal',
                 component: Legal
+            },
+            {
+                path: '/Home/Hooks',
+                component: Hooks
             },
         ]
     },
