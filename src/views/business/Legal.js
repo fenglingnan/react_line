@@ -4,7 +4,7 @@
  * @Author: ljx
  * @Date: 2021-04-25 14:06:01
  * @LastEditors: ljx
- * @LastEditTime: 2021-05-11 00:13:31
+ * @LastEditTime: 2021-06-17 23:53:16
  */
 import React, { Component } from 'react';
 import style from '../../style/Legal.module.scss'
@@ -66,35 +66,21 @@ class Legal extends Component {
         let str=this.state.pos.split('-')
         str.shift()//antUI里的第一级是0-0开始，所以剪掉一层
         let arr=[...this.state.treeData]
-        let end;
-        function dataval(val,len){
-            console.log(val,len)
-            if(len>=str.length) return
-            if(len==str.length-1){
-                console.log('123',str[len])
-                console.log(val[str[len]])
-                val[str[len]]['children']=data
-                return
+        
+        function ren(val){
+            if(str.length==0) return
+            if(str.length==1){
+                val[str[0]].children=data
             }
-            if(len<str.length){
-                dataval(val[str[len]]['children'],len)
-                len++;
-            }
-            
+            let res=str.shift()
+            return ren(val[res].children)
         }
-        dataval(arr,0)
-        console.log('6666',arr)
-        // arr[val].children=data
+        ren(arr)
+        console.log(arr,this.state)
         this.setState({
             treeData:arr
         })
-        // for(let i in this.state.treeData){
-        //     console.log(this.state.treeData[i])
-        //     console.log(val)
-        //     if(val==this.state.treeData[i].id){
-                
-        //     }
-        // }
+        
     }
     onLoadData=(data)=>{
         return new Promise(async (resolve)=>{
