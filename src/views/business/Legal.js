@@ -4,7 +4,7 @@
  * @Author: ljx
  * @Date: 2021-04-25 14:06:01
  * @LastEditors: ljx
- * @LastEditTime: 2021-06-17 23:53:16
+ * @LastEditTime: 2021-06-20 00:14:59
  */
 import React, { Component } from 'react';
 import style from '../../style/Legal.module.scss'
@@ -37,8 +37,16 @@ class Legal extends Component {
     onSearch=(val)=>{
         console.log(val)
     }
+    getContent=async (data)=>{
+        let res=await this.$api.civil.GET_CIVIL_CONTENT(data)
+    }
     selectTree=(val,data)=>{
         console.log(val,data)
+        // return
+        if(Boolean(data.node.last)){
+            this.getContent({id: val[0]})
+        }
+        
     }
     recurData=(data)=>{
         let val=[]
@@ -76,7 +84,6 @@ class Legal extends Component {
             return ren(val[res].children)
         }
         ren(arr)
-        console.log(arr,this.state)
         this.setState({
             treeData:arr
         })
@@ -84,7 +91,10 @@ class Legal extends Component {
     }
     onLoadData=(data)=>{
         return new Promise(async (resolve)=>{
-            console.log(data)
+            if(Boolean(data.last)){
+                resolve() 
+                return 
+            }
             await this.setState({pos:data.pos})
             await this.getTree(data.id)
             resolve()

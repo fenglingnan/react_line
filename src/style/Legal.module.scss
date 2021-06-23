@@ -9,6 +9,8 @@
             &>div{
                 margin-left:60px;
                 flex:1;
+                display: flex;
+                align-items: center;
                 .inp{
                     width: 450px;
                 }
